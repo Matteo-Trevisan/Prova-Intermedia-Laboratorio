@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(Prova_Intermedia
         src/main.cpp
         src/BookShelf.cpp
-        include/BookShelf.h
+        include/BookShelf.hpp
         src/Book.cpp
-        include/Book.h
+        include/Book.hpp
         src/Date.cpp
-        include/Date.h
+        include/Date.hpp
 )
