@@ -7,7 +7,9 @@ Book::Book() : state(State::available) {
 }
 
 Book::Book(std::string&& author_name, std::string&& author_surname, std::string&& title, std::string&& ISBN, const Date& date = Date(), State state = State::available) :
-ISBN(ISBN), title(title), author_name(author_name), author_surname(author_surname), date(date), state(state) {}
+ISBN(ISBN), title(title), author_name(author_name), author_surname(author_surname), date(date), state(state) {
+    (ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN");
+}
 
 void Book::set_ISBN(std::string&& new_ISBN) {
     this -> ISBN = new_ISBN;
