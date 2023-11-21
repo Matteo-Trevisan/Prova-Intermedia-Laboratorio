@@ -2,6 +2,10 @@
 #include <iostream>
 #include "../include/Date.hpp"
 
+Date::Date() : year(0), month(Month(1)), day(1) {
+
+}
+
 Date::Date(int y, Month m, int d) {
 	if (!is_valid(y, m, d)) {
 		throw std::invalid_argument("invalid_argument");
@@ -12,6 +16,7 @@ Date::Date(int y, Month m, int d) {
 }
 
 Date::Date(Date &d) = default;
+Date::Date(const Date &d) = default;
 
 void Date::set_day(int new_day) {
 	if (!is_valid(year, month, new_day)) {
@@ -100,22 +105,26 @@ int Date::days_in_month() {
 	return month_days;
 }
 
+// operator ++date
 Date& operator++(Date& d) {
 	d.add_day(1);
 	return d;
 }
 
+// operator date++
 const Date operator++(Date& d, int) {
 	Date d_copy (d);
 	++d;
 	return d_copy;
 }
 
+// operator ++month
 Month& operator++(Month& m) {
 	m = (m == Month::December) ? Month::January : Month(int(m) + 1);
 	return m;
 }
 
+// operator month++
 const Month operator++(Month& m, int) {
 	Month m_copy (m);
 	++m;

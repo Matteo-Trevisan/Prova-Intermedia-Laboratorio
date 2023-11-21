@@ -4,10 +4,10 @@
 #include "../include/Date.hpp"
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
-	Date date {2023, Month(12), 30};
-	std::cout << date << std::endl;
-	date.add_day(5);
-	std::cout << date << std::endl;
+
+    Date date1 {2023, March, 30};
+    Date date2 {1943, December, 23};
+    Date date3 {2020, April, 13};
+
 	return 0;
 }

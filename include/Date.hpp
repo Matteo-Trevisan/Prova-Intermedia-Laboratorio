@@ -7,8 +7,10 @@ enum Month {
 
 class Date {
 public:
+    Date();
 	Date(int y, Month m, int d);			//check e inizializza
 	Date(Date& d);
+    Date(const Date& d);
 
 	void add_day(int n);
 
