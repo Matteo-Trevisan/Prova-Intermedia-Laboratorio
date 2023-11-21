@@ -126,7 +126,7 @@ bool BookShelf::empty() const {
 
 std::ostream &operator<<(std::ostream &os, const BookShelf &b) {
     for (int i = 0; i < b.size(); ++i) {
-        os << b.at(i) << std::endl;
+        os << i+1 << ":{" << b.at(i) << "}" << std::endl;
     }
     return os;
 }

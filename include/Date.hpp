@@ -23,10 +23,12 @@ public:
 	int get_year() const { return year; }
 
 	bool is_leap_year() const;
+	bool has_been_set() const { return set; };
 
 private:
 	int year, day;
 	Month month;
+	bool set;
 	bool is_valid(int y, Month m, int d) const;
 	int days_in_month();
 };
@@ -35,6 +37,6 @@ Date& operator++(Date& d);
 const Date operator++(Date& d, int);
 Month& operator++(Month& m);
 const Month operator++(Month& m, int);
-std::ostream &operator<<(std::ostream &os, Date &d);
+std::ostream &operator<<(std::ostream &os, const Date &d);
 
 #endif //PROVA_INTERMEDIA_DATE_HPP

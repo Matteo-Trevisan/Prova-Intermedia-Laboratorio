@@ -1,7 +1,7 @@
 #ifndef PROVA_INTERMEDIA_BOOK_HPP
 #define PROVA_INTERMEDIA_BOOK_HPP
 
-#include "iostream"
+#include <iostream>
 #include "Date.hpp"
 
 enum State {
@@ -11,8 +11,8 @@ enum State {
 class Book {
 public:
     explicit  Book(std::string&& author_name = "", std::string&& author_surname = "", std::string&& title = "", std::string&& ISBN = "*************",const Date& date = Date(), State state = State::available);
-    Book& operator=(const Book& b);
-    Book& operator=(Book&& b) noexcept;
+
+	Book& operator=(const Book& b);
 
     void set_ISBN(std::string&& new_ISBN);
     void set_title(std::string&& new_title);
@@ -25,7 +25,7 @@ public:
     std::string get_title() const { return title; };
     std::string get_author_name() const { return author_name; };
     std::string get_author_surname() const { return author_surname; };
-    Date get_date() { return date; };
+    Date get_date() const { return date; };
     State get_state() const { return state; };
 
 

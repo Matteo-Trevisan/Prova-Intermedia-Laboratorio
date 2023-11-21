@@ -33,16 +33,14 @@ void Book::set_state(State new_state) {
 
 Book& Book::operator=(const Book& b) = default;
 
-Book& Book::operator=(Book&& b) noexcept {
-    ISBN = b.ISBN;
-    title = b.title;
-    author_name = b.author_name;
-    author_surname = b.author_surname;
-    date = b.date;
-    state = b.state;
-    return *this;
-}
-
 std::ostream &operator<<(std::ostream &os, const Book &b) {
-    return os << b.get_ISBN() << " " << b.get_title();
+	os << "Author: " << b.get_author_name() << " "  << b.get_author_surname() << ", Title: "  << b.get_title() << ", ISBN: "
+	   << b.get_ISBN() << ", Copyright: ";
+	if (b.get_date().has_been_set()) {
+		os << b.get_date();
+	} else {
+		os << "not set";
+	}
+	os << ", State: " << (b.get_state() == 0 ? "Available" : "On Loan");
+    return os;
 }

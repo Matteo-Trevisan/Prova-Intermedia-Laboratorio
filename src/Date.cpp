@@ -4,7 +4,7 @@
 
 
 
-Date::Date() : year(0), month(January), day(1) {
+Date::Date() : year(0), month(January), day(1), set(false) {
 
 }
 
@@ -16,6 +16,7 @@ Date::Date(int y, Month m, int d) {
 	year = y;
 	month = m;
 	day = d;
+	set = true;
 }
 
 Date::Date(Date &d) = default;
@@ -26,6 +27,7 @@ void Date::set_day(int new_day) {
 		throw std::invalid_argument("invalid_argument");
 	}
 	day = new_day;
+	set = true;
 }
 
 void Date::set_month(Month m) {
@@ -33,6 +35,7 @@ void Date::set_month(Month m) {
 		throw std::invalid_argument("invalid_argument");
 	}
 	month = m;
+	set = true;
 }
 
 void Date::set_year(int y) {
@@ -40,6 +43,7 @@ void Date::set_year(int y) {
 		throw std::invalid_argument("invalid_argument");
 	}
 	year = y;
+	set = true;
 }
 
 bool Date::is_leap_year() const {                                                // controlla se l'anno è bisestile
@@ -67,6 +71,7 @@ bool Date::is_valid(int y, Month m, int d) const {
 }
 
 void Date::add_day(int n) {
+	set = true;
 	if (n < 0) {
 		throw std::invalid_argument("Number of days should be positive");
 	}
@@ -134,6 +139,6 @@ const Month operator++(Month& m, int) {
 	return m_copy;
 }
 
-std::ostream &operator<<(std::ostream &os, Date &d) {
+std::ostream &operator<<(std::ostream &os, const Date &d) {
 	return os << d.get_year() << "/" << d.get_month() << "/" << d.get_day();
 }
