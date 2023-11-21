@@ -12,7 +12,7 @@ class Book {
 public:
     explicit  Book(std::string&& author_name = "", std::string&& author_surname = "", std::string&& title = "", std::string&& ISBN = "*************",const Date& date = Date(), State state = State::available);
     Book& operator=(const Book& b);
-    Book& operator=(Book&& b)  noexcept;
+    Book& operator=(Book&& b) noexcept;
 
     void set_ISBN(std::string&& new_ISBN);
     void set_title(std::string&& new_title);

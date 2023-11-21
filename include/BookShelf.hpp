@@ -32,7 +32,7 @@ public:
     void shrink_to_fit();
 
 private:
-    static const int min_buff_capacity = 5;
+    static const int start_buff_capacity = 1;
     int length;
     int buff_capacity;
     Book *buff;

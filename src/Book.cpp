@@ -3,8 +3,8 @@
 #include "../include/Book.hpp"
 
 Book::Book(std::string&& author_name, std::string&& author_surname, std::string&& title, std::string&& ISBN, const Date& date, State state) :
-        ISBN(ISBN), title(title), author_name(author_name), author_surname(author_surname), date(date), state(state) {
-    (ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN");
+		author_name(author_name), author_surname(author_surname), title(title), ISBN(ISBN),  date(date), state(state) {
+    		(ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN");
 }
 
 void Book::set_ISBN(std::string&& new_ISBN) {
@@ -31,11 +31,9 @@ void Book::set_state(State new_state) {
     this -> state = new_state;
 }
 
-Book& Book::operator=(const Book& b) {
-    return *this;
-}
+Book& Book::operator=(const Book& b) = default;
 
-Book& Book::operator=(Book&& b)  noexcept {
+Book& Book::operator=(Book&& b) noexcept {
     ISBN = b.ISBN;
     title = b.title;
     author_name = b.author_name;

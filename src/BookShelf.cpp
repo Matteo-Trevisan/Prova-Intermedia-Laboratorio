@@ -2,20 +2,19 @@
 #include <stdexcept>
 #include <algorithm>
 #include "../include/BookShelf.hpp"
-#include "../include/Book.hpp"
 
 
-BookShelf::BookShelf(): length(0), buff_capacity(min_buff_capacity), buff(new Book[min_buff_capacity]) {}
+BookShelf::BookShelf(): length(0), buff_capacity(start_buff_capacity), buff(new Book[start_buff_capacity]) {}
 
 BookShelf::BookShelf(int length) {
     if (length < 0) throw std::invalid_argument("");
-    this -> length = length;
-    this -> buff_capacity = (length >= min_buff_capacity ? length : min_buff_capacity);
+    this -> length = 0;
+    this -> buff_capacity = length;
     this -> buff = new Book[buff_capacity];
 }
 BookShelf::BookShelf(std::initializer_list<Book> il) {
     this -> length = static_cast<int>(il.size());  // voglio proprio fare questo, sono convinto di ciò (BS) ;)
-    this -> buff_capacity = (length >= min_buff_capacity ? length : min_buff_capacity);
+    this -> buff_capacity = length;
     this -> buff = new Book[buff_capacity];
     std::copy(il.begin(),il.end(), buff);
 }
@@ -49,12 +48,12 @@ const Book& BookShelf::operator[](int i) const {
     return buff[i];
 }
 Book& BookShelf::at(int i) {
-    if(i < 0 || i >= length) throw std::out_of_range("");
+    if(i < 0 || i >= length) throw std::out_of_range("out_of_range");
     return buff[i];
 }
 
 const Book& BookShelf::at(int i) const {
-    if(i < 0 || i>=length) throw std::out_of_range ("");
+    if(i < 0 || i>=length) throw std::out_of_range ("out_of_range");
     return buff[i];
 }
 int BookShelf::size() const {
@@ -90,20 +89,23 @@ void BookShelf::resize(int size) {
 }
 
 void BookShelf::shrink_to_fit() {
-    buff_capacity = (length > -min_buff_capacity ? length : min_buff_capacity);
+    buff_capacity = length;
     auto *new_buff = new Book[buff_capacity];
-    std::copy_n(buff, length, new_buff);
+    std::copy_n(buff, buff_capacity, new_buff);
     delete[] buff;
     buff = new_buff;
 }
 
 BookShelf& BookShelf::operator=(const BookShelf& arg) {
-    auto *new_buff = new Book[arg.buff_capacity];
+	if(this == &arg){
+		return *this;
+	}
+	auto *new_buff = new Book[arg.buff_capacity];
     std::copy_n(arg.buff,arg.length, new_buff);
     delete[] buff;
     buff = new_buff;
     length = arg.length;
-    buff_capacity - arg.buff_capacity;
+    buff_capacity = arg.buff_capacity;
     return *this;
 }
 
