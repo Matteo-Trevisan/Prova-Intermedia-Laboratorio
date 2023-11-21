@@ -2,9 +2,12 @@
 #include <iostream>
 #include "../include/Date.hpp"
 
-Date::Date() : year(0), month(Month(1)), day(1) {
+
+
+Date::Date() : year(0), month(January), day(1) {
 
 }
+
 
 Date::Date(int y, Month m, int d) {
 	if (!is_valid(y, m, d)) {

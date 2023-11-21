@@ -11,7 +11,7 @@ enum State {
 class Book {
 public:
     Book();
-    Book(std::string&& author_name, std::string&& author_surname, std::string&& title, std::string&& ISBN,const Date& date, State state);
+    Book(std::string&& author_name, std::string&& author_surname, std::string&& title, std::string&& ISBN,const Date& date = Date(), State state = State::available);
     Book& operator=(const Book& b);
     Book& operator=(Book&& b)  noexcept;
 
