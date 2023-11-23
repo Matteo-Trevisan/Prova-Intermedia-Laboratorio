@@ -6,14 +6,14 @@ Book::Book(std::string  author_name, std::string  author_surname, std::string  t
 		author_name(std::move(author_name)),
 		author_surname(std::move(author_surname)),
 		title(std::move(title)),
-		ISBN((ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN")),
+		ISBN((ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN, provide a 13 character long string")),
 		date(date),
 		state(state) {
 
 }
 
 void Book::set_ISBN(const std::string& new_ISBN) {
-	(ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN");
+	(ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN, provide a 13 character long string");
     this -> ISBN = new_ISBN;
 }
 
@@ -39,9 +39,15 @@ void Book::set_state(const State& new_state) {
 
 Book& Book::operator=(const Book& b) = default;
 
+
+bool operator==(const Book& b1, const Book& b2) {
+	return b1.get_ISBN() == b2.get_ISBN();
+}
+
 std::ostream &operator<<(std::ostream &os, const Book &b) {
-	os << "Author: " << b.get_author_name() << " "  << b.get_author_surname() << ", Title: "  << b.get_title() << ", ISBN: "
-	   << b.get_ISBN() << ", Copyright: ";
+	os << "Author: " << b.get_author_name() << " "  << b.get_author_surname()
+	<< ", Title: \""  << b.get_title()
+	<< "\", ISBN: " << b.get_ISBN() << ", Copyright: ";
 	if (b.get_date().has_been_set()) {
 		os << b.get_date();
 	} else {

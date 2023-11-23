@@ -7,9 +7,9 @@
 BookShelf::BookShelf(): length(0), buff_capacity(start_buff_capacity), buff(new Book[start_buff_capacity]) {}
 
 BookShelf::BookShelf(int length, const Book& val) {
-    if (length < 0) throw std::invalid_argument("");
+    if (length < 0) throw std::invalid_argument("Bookshelf length not valid, provide a non-negative number");
     this -> length = length;
-    this -> buff_capacity = length;
+    this -> buff_capacity = (start_buff_capacity < length ? length : start_buff_capacity);
     this -> buff = new Book[buff_capacity];
 	std::fill_n(buff, length, val);
 }
@@ -49,12 +49,12 @@ const Book& BookShelf::operator[](int i) const {
     return buff[i];
 }
 Book& BookShelf::at(int i) {
-    if(i < 0 || i >= length) throw std::out_of_range("out_of_range");
+    if(i < 0 || i >= length) throw std::out_of_range("requested index out of range");
     return buff[i];
 }
 
 const Book& BookShelf::at(int i) const {
-    if(i < 0 || i>=length) throw std::out_of_range ("out_of_range");
+    if(i < 0 || i>=length) throw std::out_of_range ("requested index out of range");
     return buff[i];
 }
 int BookShelf::size() const {
@@ -72,7 +72,7 @@ void BookShelf::push_back(Book& d) {
 }
 
 void BookShelf::pop_back() {
-    if (length == 0) throw std::length_error ("");
+    if (length == 0) throw std::length_error ("Bookshelf already empty, no element to pop");
     length--;
 }
 
@@ -90,7 +90,7 @@ void BookShelf::resize(int size) {
 }
 
 void BookShelf::shrink_to_fit() {
-    buff_capacity = length;
+    buff_capacity = (length == 0 ? 1 : length);
     auto *new_buff = new Book[buff_capacity];
     std::copy_n(buff, buff_capacity, new_buff);
     delete[] buff;

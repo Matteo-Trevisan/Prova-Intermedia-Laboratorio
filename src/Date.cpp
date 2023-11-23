@@ -11,7 +11,7 @@ Date::Date() : year(0), month(Month::January), day(1), set(false) {
 
 Date::Date(int y, Month m, int d) {
 	if (!is_valid(y, m, d)) {
-		throw std::invalid_argument("invalid_argument");
+		throw std::invalid_argument("Invalid date");
 	}
 	year = y;
 	month = m;
@@ -24,7 +24,7 @@ Date::Date(const Date &d) = default;
 
 void Date::set_day(int new_day) {
 	if (!is_valid(year, month, new_day)) {
-		throw std::invalid_argument("invalid_argument");
+		throw std::invalid_argument("Invalid date");
 	}
 	day = new_day;
 	set = true;
@@ -32,7 +32,7 @@ void Date::set_day(int new_day) {
 
 void Date::set_month(Month m) {
 	if (!is_valid(year, m, day)) {
-		throw std::invalid_argument("invalid_argument");
+		throw std::invalid_argument("Invalid date");
 	}
 	month = m;
 	set = true;
@@ -40,7 +40,7 @@ void Date::set_month(Month m) {
 
 void Date::set_year(int y) {
 	if (!is_valid(y, month, day)) {
-		throw std::invalid_argument("invalid_argument");
+		throw std::invalid_argument("Invalid date");
 	}
 	year = y;
 	set = true;
