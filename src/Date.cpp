@@ -1,10 +1,10 @@
 #include <stdexcept>
 #include <iostream>
-#include "../include/Date.hpp"
+#include "../include/Date.h"
 
 
 
-Date::Date() : year(0), month(January), day(1), set(false) {
+Date::Date() : year(0), month(Month::January), day(1), set(false) {
 
 }
 
@@ -51,11 +51,11 @@ bool Date::is_leap_year() const {                                               
 }
 
 bool Date::is_valid(int y, Month m, int d) const {
-	if (y < 0 || d < 1 || d > 31 || m < 1 || m > 12) {        // controllo day, month e year
+	if (y < 0 || d < 1 || d > 31 || m < Month::January || m > Month::December) {        // controllo day, month e year
 		return false;
 	}
 
-	if (m == 2) {                    // controllo giorno nel month february
+	if (m == Month::February) {                    // controllo giorno nel month february
 		if (is_leap_year()) {
 			return d <= 29;
 		} else {
@@ -63,7 +63,7 @@ bool Date::is_valid(int y, Month m, int d) const {
 		}
 	}
 
-	if (m == 4 || m == 6 || m == 9 || m == 11) {
+	if (m == Month::April || m == Month::June || m == Month::September || m == Month::November) {
 		return d <= 30;
 	}
 
@@ -85,7 +85,7 @@ void Date::add_day(int n) {
 
 		if (n > 0) {
 			day = 1;
-			if (month == 12) {
+			if (month == Month::December) {
 				month = Month::January;
 				year++;
 			} else {
@@ -99,11 +99,11 @@ void Date::add_day(int n) {
 int Date::days_in_month() {
 	int month_days;
 	switch (month) {
-		case 2:
+		case Month::February:
 			month_days = is_leap_year() ? 29 : 28;
 			break;
-		case 4: case 6: case 9:
-		case 11:
+		case Month::April: case Month::June: case Month::September:
+		case Month::November:
 			month_days = 30;
 			break;
 		default:

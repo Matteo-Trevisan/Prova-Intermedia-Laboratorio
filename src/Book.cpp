@@ -1,25 +1,31 @@
 #include <utility>
 
-#include "../include/Book.hpp"
+#include "../include/Book.h"
 
-Book::Book(std::string&& author_name, std::string&& author_surname, std::string&& title, std::string&& ISBN, const Date& date, State state) :
-		author_name(author_name), author_surname(author_surname), title(title), ISBN(ISBN),  date(date), state(state) {
-    		(ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN");
+Book::Book(std::string  author_name, std::string  author_surname, std::string  title, const std::string& ISBN, const Date& date,const State& state) :
+		author_name(std::move(author_name)),
+		author_surname(std::move(author_surname)),
+		title(std::move(title)),
+		ISBN((ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN")),
+		date(date),
+		state(state) {
+
 }
 
-void Book::set_ISBN(std::string&& new_ISBN) {
+void Book::set_ISBN(const std::string& new_ISBN) {
+	(ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN");
     this -> ISBN = new_ISBN;
 }
 
-void Book::set_title(std::string&& new_title) {
+void Book::set_title(const std::string& new_title) {
     this -> title = new_title;
 }
 
-void Book::set_author_name(std::string&& new_author_name) {
-    this -> author_name = std::move(new_author_name);
+void Book::set_author_name(const std::string& new_author_name) {
+    this -> author_name = new_author_name;
 }
 
-void Book::set_author_surname(std::string&& new_author_surname) {
+void Book::set_author_surname(const std::string& new_author_surname) {
     this -> author_surname = new_author_surname;
 }
 
@@ -27,7 +33,7 @@ void Book::set_date(const Date& new_date) {
     this -> date = new_date;
 }
 
-void Book::set_state(State new_state) {
+void Book::set_state(const State& new_state) {
     this -> state = new_state;
 }
 
@@ -41,6 +47,6 @@ std::ostream &operator<<(std::ostream &os, const Book &b) {
 	} else {
 		os << "not set";
 	}
-	os << ", State: " << (b.get_state() == 0 ? "Available" : "On Loan");
+	os << ", State: " << (b.get_state() == State::available ? "Available" : "On Loan");
     return os;
 }

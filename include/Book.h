@@ -1,25 +1,32 @@
-#ifndef PROVA_INTERMEDIA_BOOK_HPP
-#define PROVA_INTERMEDIA_BOOK_HPP
+#ifndef PROVA_INTERMEDIA_BOOK_H
+#define PROVA_INTERMEDIA_BOOK_H
 
 #include <iostream>
-#include "Date.hpp"
+#include "Date.h"
 
-enum State {
+enum class State {
     available = 0, on_loan = 1
 };
 
 class Book {
 public:
-    explicit  Book(std::string&& author_name = "", std::string&& author_surname = "", std::string&& title = "", std::string&& ISBN = "*************",const Date& date = Date(), State state = State::available);
+    explicit  Book(
+		std::string   author_name = "Unknown",
+		std::string  author_surname = "Unknown",
+		std::string  title = "Unknown",
+		const std::string& ISBN = "*************",
+		const Date& date = Date(),
+		const State& state = State::available
+    );
 
 	Book& operator=(const Book& b);
 
-    void set_ISBN(std::string&& new_ISBN);
-    void set_title(std::string&& new_title);
-    void set_author_name(std::string&& new_author_name);
-    void set_author_surname(std::string&& new_author_surname);
+    void set_ISBN(const std::string& new_ISBN);
+    void set_title(const std::string& new_title);
+    void set_author_name(const std::string& new_author_name);
+    void set_author_surname(const std::string& new_author_surname);
     void set_date(const Date& new_date);
-    void set_state(State new_state);
+    void set_state(const State& new_state);
 
     std::string get_ISBN() const { return ISBN; };
     std::string get_title() const { return title; };
@@ -40,4 +47,4 @@ private:
 
 std::ostream &operator<<(std::ostream &os, const Book &b);
 
-#endif //PROVA_INTERMEDIA_BOOK_HPP
+#endif //PROVA_INTERMEDIA_BOOK_H

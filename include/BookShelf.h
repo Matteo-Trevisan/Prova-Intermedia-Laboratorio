@@ -1,13 +1,13 @@
-#ifndef PROVA_INTERMEDIA_BOOKSHELF_HPP
-#define PROVA_INTERMEDIA_BOOKSHELF_HPP
+#ifndef PROVA_INTERMEDIA_BOOKSHELF_H
+#define PROVA_INTERMEDIA_BOOKSHELF_H
 
 #include "iostream"
-#include "../include/Book.hpp"
+#include "../include/Book.h"
 
 class BookShelf {
 public:
     BookShelf();
-    explicit BookShelf (int size);
+    explicit BookShelf (int size, const Book& val = Book());
     BookShelf(std::initializer_list<Book> il);
     BookShelf (const BookShelf& arg);
     BookShelf (BookShelf&& arg) noexcept;
@@ -41,4 +41,4 @@ private:
 
 std::ostream &operator<<(std::ostream &os, const BookShelf &b);
 
-#endif //PROVA_INTERMEDIA_BOOKSHELF_HPP
+#endif //PROVA_INTERMEDIA_BOOKSHELF_H

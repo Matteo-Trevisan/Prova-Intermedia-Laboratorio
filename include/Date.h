@@ -1,5 +1,5 @@
-#ifndef PROVA_INTERMEDIA_DATE_HPP
-#define PROVA_INTERMEDIA_DATE_HPP
+#ifndef PROVA_INTERMEDIA_DATE_H
+#define PROVA_INTERMEDIA_DATE_H
 
 enum Month {
 	January = 1, February, March, April, May, June, July, August, September, October, November, December
@@ -39,4 +39,4 @@ Month& operator++(Month& m);
 const Month operator++(Month& m, int);
 std::ostream &operator<<(std::ostream &os, const Date &d);
 
-#endif //PROVA_INTERMEDIA_DATE_HPP
+#endif //PROVA_INTERMEDIA_DATE_H

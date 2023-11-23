@@ -1,16 +1,17 @@
 #include <iostream>
 #include <stdexcept>
 #include <algorithm>
-#include "../include/BookShelf.hpp"
+#include "../include/BookShelf.h"
 
 
 BookShelf::BookShelf(): length(0), buff_capacity(start_buff_capacity), buff(new Book[start_buff_capacity]) {}
 
-BookShelf::BookShelf(int length) {
+BookShelf::BookShelf(int length, const Book& val) {
     if (length < 0) throw std::invalid_argument("");
-    this -> length = 0;
+    this -> length = length;
     this -> buff_capacity = length;
     this -> buff = new Book[buff_capacity];
+	std::fill_n(buff, length, val);
 }
 BookShelf::BookShelf(std::initializer_list<Book> il) {
     this -> length = static_cast<int>(il.size());  // voglio proprio fare questo, sono convinto di ciò (BS) ;)
