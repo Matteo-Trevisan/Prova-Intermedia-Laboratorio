@@ -2,10 +2,10 @@
 
 #include "../include/Book.h"
 
-Book::Book(std::string  author_name, std::string  author_surname, std::string  title, const std::string& ISBN, const Date& date,const State& state) :
-		author_name(std::move(author_name)),
-		author_surname(std::move(author_surname)),
-		title(std::move(title)),
+Book::Book(const std::string& author_name,const std::string& author_surname,const std::string& title, const std::string& ISBN, const Date& date,const State& state) :
+		author_name(author_name),
+		author_surname(author_surname),
+		title(title),
 		ISBN((ISBN.length()==13) ? ISBN : throw std::invalid_argument("Invalid ISBN, provide a 13 character long string")),
 		date(date),
 		state(state) {

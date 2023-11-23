@@ -11,10 +11,10 @@ enum class State {
 class Book {
 public:
     explicit  Book(
-		std::string   author_name = "Unknown",
-		std::string  author_surname = "Unknown",
-		std::string  title = "Unknown",
-		const std::string& ISBN = "*************",
+		const std::string& author_name = "Unknown",
+		const std::string& author_surname = "Unknown",
+		const std::string& title = "Unknown",
+		const std::string& ISBN = "000-000-000-0",
 		const Date& date = Date(),
 		const State& state = State::available
     );
