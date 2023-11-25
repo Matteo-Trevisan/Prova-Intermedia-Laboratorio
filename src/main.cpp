@@ -15,6 +15,7 @@ int main() {
 	Book b2 {"Daniele", "Bianchi", "Dati e Algoritmi", "345-678-990-9", date1};
 	Book mybook("David", "Foster Wallace", "Una cosa divertente che	non farò mai più", "887-521-837-4");
 
+
 	BookShelf shelf;
 	std::cout << shelf << std::endl;
 	mybook.set_state(State::available);
