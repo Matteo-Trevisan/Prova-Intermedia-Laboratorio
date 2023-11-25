@@ -83,7 +83,9 @@ int days_in_month(int y, Month m) {
 		case Month::February:
 			month_days = is_leap_year(y) ? 29 : 28;
 			break;
-		case Month::April: case Month::June: case Month::September:
+		case Month::April:
+		case Month::June:
+		case Month::September:
 		case Month::November:
 			month_days = 30;
 			break;
@@ -96,35 +98,35 @@ int days_in_month(int y, Month m) {
 
 // controllo se è un anno bisestile
 bool is_leap_year(int y) {
-    return ((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0);
+	return ((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0);
 }
 
 // overloading operatore ++copyright_date
 
-Date& operator++(Date& d) {
+Date &operator++(Date &d) {
 	d.add_day(1);
 	return d;
 }
 
 // overloading operatore copyright_date++
 
-const Date operator++(Date& d, int) {
-	Date d_copy (d);
+const Date operator++(Date &d, int) {
+	Date d_copy(d);
 	++d;
 	return d_copy;
 }
 
 // overloading operatore ++month
 
-Month& operator++(Month& m) {
+Month &operator++(Month &m) {
 	m = (m == Month::December) ? Month::January : Month(int(m) + 1);
 	return m;
 }
 
 // overloading operatore month++
 
-const Month operator++(Month& m, int) {
-	Month m_copy (m);
+const Month operator++(Month &m, int) {
+	Month m_copy(m);
 	++m;
 	return m_copy;
 }
