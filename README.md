@@ -1,4 +1,6 @@
-# Prova intermedia di programmazione
+# ProvaIntermediaLaboratorio 
+Prova intermedia di programmazione
+
 **Autori**: Andrea Sacchetto, Elia Tolfo, Matteo Trevisan
 
 **Gruppo**: Dignitosamente brilli
