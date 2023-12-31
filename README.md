@@ -1,4 +1,4 @@
-# ProvaIntermediaLaboratorio 
+# BookShelf 
 Prova intermedia di programmazione
 
 **Autori**: Andrea Sacchetto, Elia Tolfo, Matteo Trevisan
